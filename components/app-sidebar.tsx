@@ -35,7 +35,7 @@ const data = {
   },
   teams: [
     {
-      name: "Acme Inc",
+      name: "Bv LNT",
       logo: GalleryVerticalEnd,
       plan: "Enterprise",
     },
@@ -52,14 +52,14 @@ const data = {
   ],
   navMain: [
     {
-      title: "Playground",
+      title: "Zalo",
       url: "#",
       icon: SquareTerminal,
       isActive: true,
       items: [
         {
-          title: "History",
-          url: "/playground",
+          title: "Token",
+          url: "/token",
         },
         {
           title: "Starred",
@@ -160,7 +160,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
-        <TeamSwitcher teams={data.teams} />
+        <TeamSwitcher />
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />
