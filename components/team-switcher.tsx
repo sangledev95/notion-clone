@@ -10,17 +10,12 @@ export function TeamSwitcher() {
       size="lg"
       className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
     >
-      <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
-        <Image
-          src={"../../public/file.svg"}
-          width={36}
-          height={36}
-          alt="Logo"
-        />
+      <div className="flex aspect-square size-8 items-center justify-center text-sidebar-primary-foreground border border-gray-400 rounded-xs">
+        <Image src={"/imgs/logo.png"} width={36} height={36} alt="Logo" />
       </div>
       <div className="grid flex-1 text-left text-sm leading-tight">
-        <span className="truncate font-semibold">Bv LNT</span>
-        <span className="truncate text-xs">BV Da khoa</span>
+        <span className="truncate text-[10px]">BỆNH VIỆN ĐA KHOA</span>
+        <span className="truncate text-base font-semibold">LÊ NGỌC TÙNG</span>
       </div>
     </SidebarMenuButton>
   );
