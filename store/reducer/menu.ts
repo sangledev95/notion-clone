@@ -1,11 +1,17 @@
 import { createReducer } from "@reduxjs/toolkit";
 import { setSelectedMenu } from "../action/menu";
+import { Item } from "@/types/menu";
 
-interface CounterState {
-  selectedMenu: unknown;
+interface MenuState {
+  selectedMenu: Item;
 }
 
-const initialState: CounterState = { selectedMenu: {} };
+const initialState: MenuState = {
+  selectedMenu: {
+    title: "",
+    url: "",
+  },
+};
 
 const menuReducer = createReducer(initialState, (builder) => {
   builder.addCase(setSelectedMenu, (state, action) => {
