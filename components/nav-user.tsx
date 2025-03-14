@@ -25,17 +25,28 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar";
+import { Button } from "./ui/button";
+import { useSelector } from "react-redux";
+import { userData } from "@/store/selector/user";
+import { useRouter } from "next/navigation";
 
-export function NavUser({
-  user,
-}: {
-  user: {
-    name: string;
-    email: string;
-    avatar: string;
-  };
-}) {
+export function NavUser() {
   const { isMobile } = useSidebar();
+  const router = useRouter();
+  const user = useSelector(userData);
+
+  if (!user.email) {
+    return (
+      <div>
+        <Button
+          className="w-full cursor-pointer"
+          variant="outline"
+          onClick={() => router.push("/login")}>
+          Login
+        </Button>
+      </div>
+    );
+  }
 
   return (
     <SidebarMenu>

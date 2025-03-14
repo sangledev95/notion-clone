@@ -18,7 +18,7 @@ import {
   SidebarMenuSubItem,
 } from "@/components/ui/sidebar";
 import Link from "next/link";
-import { Item } from "@/types/menu";
+import { Item } from "@/store/types/menu";
 import { useDispatch } from "react-redux";
 import { setSelectedMenu } from "@/store/action/menu";
 import { useEffect } from "react";
@@ -77,8 +77,7 @@ export function NavMain({ items }: { items: Item[] }) {
             key={item.title}
             asChild
             defaultOpen={item.isActive}
-            className="group/collapsible"
-          >
+            className="group/collapsible">
             <SidebarMenuItem>
               <CollapsibleTrigger asChild>
                 <SidebarMenuButton tooltip={item.title}>
@@ -94,8 +93,7 @@ export function NavMain({ items }: { items: Item[] }) {
                       <SidebarMenuSubButton asChild>
                         <Link
                           href={subItem.url}
-                          onClick={() => handleClickMenu(item, subItem)}
-                        >
+                          onClick={() => handleClickMenu(item, subItem)}>
                           <span>{subItem.title}</span>
                         </Link>
                       </SidebarMenuSubButton>

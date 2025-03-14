@@ -1,6 +1,6 @@
 import { createReducer } from "@reduxjs/toolkit";
 import { setSelectedMenu } from "../action/menu";
-import { Item } from "@/types/menu";
+import { Item } from "@/store/types/menu";
 
 interface MenuState {
   selectedMenu: Item;
