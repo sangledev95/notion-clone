@@ -1,3 +1,4 @@
+"use client";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import {
@@ -9,11 +10,34 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import Link from "next/link";
+import Image from "next/image";
 
 export function LoginForm({
   className,
   ...props
 }: React.ComponentPropsWithoutRef<"div">) {
+  const handleAuthenticationZalo = () => {
+    console.log(
+      "process.env.NEXT_PUBLIC_ZALO_APP_ID ==",
+      process.env.NEXT_PUBLIC_ZALO_APP_ID,
+      process.env.NEXT_PUBLIC_REDIRECT_URI
+    );
+    // Phải expose biến môi trường trong Next.js
+    const URI_AUTH_ZALO = `https://oauth.zaloapp.com/v4/oa/permission?app_id=${
+      process.env.NEXT_PUBLIC_ZALO_APP_ID
+    }&redirect_uri=${encodeURIComponent(
+      process.env.NEXT_PUBLIC_REDIRECT_URI || ""
+    )}`;
+
+    console.log("URI_AUTH_ZALO === ", URI_AUTH_ZALO);
+    window.open(
+      URI_AUTH_ZALO,
+      "_blank",
+      "width=500,height=600,noopener,noreferrer"
+    );
+  };
+
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
       <Card>
@@ -27,6 +51,18 @@ export function LoginForm({
           <form>
             <div className="grid gap-6">
               <div className="flex flex-col gap-4">
+                <Button
+                  className="bg-blue-500 cursor-pointer w-full"
+                  onClick={handleAuthenticationZalo}>
+                  <Image
+                    src={"/icons/zalo.svg"}
+                    width={24}
+                    height={24}
+                    alt="icon zalo"
+                  />
+                  Authentication Zalo
+                </Button>
+
                 <Button variant="outline" className="w-full">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                     <path
@@ -87,8 +123,9 @@ export function LoginForm({
         </CardContent>
       </Card>
       <div className="text-balance text-center text-xs text-muted-foreground [&_a]:underline [&_a]:underline-offset-4 [&_a]:hover:text-primary  ">
-        By clicking continue, you agree to our <a href="#">Terms of Service</a>{" "}
-        and <a href="#">Privacy Policy</a>.
+        By clicking continue, you agree to our{" "}
+        <Link href="/terms-of-service">Terms of Service</Link> and{" "}
+        <Link href="/privacy-policy">Privacy Policy</Link>.
       </div>
     </div>
   );
